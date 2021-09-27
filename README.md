@@ -1,8 +1,6 @@
-# Piano
+# Virtual Piano
 
 ## Notes
-
-- Bootstrap by [fe-base](https://github.com/funsideprojects/fe-base) v1
 
 - Instrument samples came from [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments)
 
