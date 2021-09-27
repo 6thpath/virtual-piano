@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
     "aaron-bond.better-comments",
     "shardulm94.trailing-spaces"
   ]
