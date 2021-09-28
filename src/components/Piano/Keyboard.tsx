@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { TKey, keyMapping, keyboardConfig } from 'config'
 import { DisplayKey, KeyDetail, WHITE_KEYS_CONTAINER_ID, BLACK_KEYS_CONTAINER_ID } from 'constant'
 import { synthesize } from 'core'
-import { displayKeyState, keyDetailState, mouseClickState } from 'store'
+import { displayKeyState, keyDetailState, mouseState } from 'store'
 import { keyId, isWhiteKey } from 'utils'
 
 const { whiteKeys, blackKeys } = keyMapping.piano
@@ -61,7 +61,7 @@ const renderKeyDetail = ({ keyDetail, key, flat = false }: RenderKeyDetailOption
 export const Keyboard: React.FC = () => {
   const displayKey = useRecoilValue(displayKeyState)
   const keyDetail = useRecoilValue(keyDetailState)
-  const { leftMouseDown } = useRecoilValue(mouseClickState)
+  const { leftMouseDown } = useRecoilValue(mouseState)
   console.log('Keyboard:React.FC -> leftMouseDown', leftMouseDown)
 
   const onClickPianoKey = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, key: string) => {

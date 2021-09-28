@@ -2,32 +2,35 @@ import { atom } from 'recoil'
 
 import { SamplesExtension, DisplayKey, KeyDetail } from 'constant'
 import { localStorageEffect } from 'store/persistence'
-import { TPianoState } from 'type/Store'
+import { isPersistedValueValid } from 'utils'
 
-import { PIANO_READY, SAMPLES_EXTENSION, DISPLAY_KEY, KEY_DETAIL } from '../id'
+import { PIANO, SAMPLES_EXTENSION, DISPLAY_KEY, KEY_DETAIL } from '../id'
 
-export const pianoState = atom<TPianoState>({
-  key: PIANO_READY,
+export const pianoState = atom({
+  key: PIANO,
   default: {
     ready: false,
     lock: false,
   },
 })
 
-export const samplesExtensionState = atom<SamplesExtension>({
+const initialSamplesExtensionState = isPersistedValueValid(SAMPLES_EXTENSION, SamplesExtension) ?? SamplesExtension.OGG
+export const samplesExtensionState = atom({
   key: SAMPLES_EXTENSION,
-  default: (localStorage.getItem(SAMPLES_EXTENSION) as SamplesExtension) ?? SamplesExtension.OGG,
+  default: initialSamplesExtensionState,
   effects_UNSTABLE: [localStorageEffect(SAMPLES_EXTENSION)],
 })
 
-export const displayKeyState = atom<DisplayKey>({
+const initialDisplayKeyState = isPersistedValueValid(DISPLAY_KEY, DisplayKey) ?? DisplayKey.ON
+export const displayKeyState = atom({
   key: DISPLAY_KEY,
-  default: (localStorage.getItem(DISPLAY_KEY) as DisplayKey) ?? DisplayKey.ON,
+  default: initialDisplayKeyState,
   effects_UNSTABLE: [localStorageEffect(DISPLAY_KEY)],
 })
 
-export const keyDetailState = atom<KeyDetail>({
+const initialKeyDetailState = isPersistedValueValid(KEY_DETAIL, KeyDetail) ?? KeyDetail.NONE
+export const keyDetailState = atom({
   key: KEY_DETAIL,
-  default: (localStorage.getItem(KEY_DETAIL) as KeyDetail) ?? KeyDetail.NONE,
+  default: initialKeyDetailState,
   effects_UNSTABLE: [localStorageEffect(KEY_DETAIL)],
 })

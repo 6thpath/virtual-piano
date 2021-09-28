@@ -1,30 +1,24 @@
-import { useEffect, Fragment, useCallback } from 'react'
+import { useEffect, Fragment } from 'react'
 import { useSetRecoilState } from 'recoil'
 
-import { mouseClickState } from 'store'
+import { mouseState } from 'store'
 
 export const MouseEventHandler: React.FC = () => {
-  const setMouseClickState = useSetRecoilState(mouseClickState)
-
-  const onMouseDown = useCallback(
-    (event: MouseEvent) => {
-      if (event.button === 0) {
-        setMouseClickState((prevState) => ({ ...prevState, leftMouseDown: true }))
-      }
-    },
-    [setMouseClickState]
-  )
-
-  const onMouseUp = useCallback(
-    (event: MouseEvent) => {
-      if (event.button === 0) {
-        setMouseClickState((prevState) => ({ ...prevState, leftMouseDown: false }))
-      }
-    },
-    [setMouseClickState]
-  )
+  const setMouseState = useSetRecoilState(mouseState)
 
   useEffect(() => {
+    const onMouseDown = (event: MouseEvent) => {
+      if (event.button === 0) {
+        setMouseState((prevState) => ({ ...prevState, leftMouseDown: true }))
+      }
+    }
+
+    const onMouseUp = (event: MouseEvent) => {
+      if (event.button === 0) {
+        setMouseState((prevState) => ({ ...prevState, leftMouseDown: false }))
+      }
+    }
+
     document.addEventListener('mousedown', onMouseDown)
     document.addEventListener('mouseup', onMouseUp)
 
@@ -32,7 +26,7 @@ export const MouseEventHandler: React.FC = () => {
       document.removeEventListener('mousedown', onMouseDown)
       document.removeEventListener('mouseup', onMouseUp)
     }
-  }, [onMouseDown, onMouseUp])
+  }, [setMouseState])
 
   return <Fragment />
 }

@@ -1,11 +1,9 @@
 import { atom } from 'recoil'
 
-import { TMouseClick } from 'type/Store'
+import { MOUSE } from 'store/id'
 
-import { MOUSE_CLICK } from '../id'
-
-export const mouseClickState = atom<TMouseClick>({
-  key: MOUSE_CLICK,
+export const mouseState = atom({
+  key: MOUSE,
   default: {
     leftMouseDown: false,
     rightMouseDown: false,
