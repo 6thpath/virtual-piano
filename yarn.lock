@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@6thpath/design-system@^1.0.0":
-  version "1.0.0"
-  resolved "https://npm.pkg.github.com/download/@6thpath/design-system/1.0.0/9108f33bdc96f759c8444f7dae39402d34cabcd9a4318ca137f22a6264b733d8#bba5912855133f0166f2b714575043c7e14d5d99"
-  integrity sha512-H0FEKVieY2klTbcNfN8HDC7Z/T+neq/J7TfHqaC7gQ+nyM1CvoBegkasHlp6HkAsVXp8bYnMwc66C/WUaNFLmg==
+"@6thpath/design-system@^1.0.1":
+  version "1.0.1"
+  resolved "https://npm.pkg.github.com/download/@6thpath/design-system/1.0.1/2d5add2c40215fa223555d522058a6f6badcc292296a6822499c75d82f883d64#aa61cf716d0a3a7b4ec94edc6e475071646fb816"
+  integrity sha512-36P5WCfbqh6pWowtlzBTQF0Pb4dpHQwq+aXKMZNyeXXv4pOdq+WCan+Tji51zNPiqznIzx38x7g844qtgJofWA==
   dependencies:
     "@ctrl/tinycolor" "3.4.0"
     "@tailwindcss/forms" "0.3.3"
     "@tailwindcss/line-clamp" "0.2.1"
-    "@tailwindcss/postcss7-compat" "2.2.14"
+    "@tailwindcss/postcss7-compat" "2.2.16"
     autoprefixer "9"
     deepmerge "4.2.2"
     postcss "7"
@@ -18,12 +18,12 @@
     postcss-import "12"
     postcss-nested "4"
     prettier-eslint "^13.0.0"
-    tailwindcss "npm:@tailwindcss/postcss7-compat@2.2.14"
+    tailwindcss "npm:@tailwindcss/postcss7-compat@2.2.16"
 
-"@6thpath/eslint-config@^1.0.1":
-  version "1.0.1"
-  resolved "https://npm.pkg.github.com/download/@6thpath/eslint-config/1.0.1/5693cd81997e8db9f17688a8c5537d6a61eaf6cc812a6196e6786125722de92f#4d4a64c47447e6079529a88ce4de174aff6845e9"
-  integrity sha512-QGbpW5ugSr7WF/eb9dXV+krC6XfVyqEbG/IAkI+agnjXWmSn4nAvz8ISaQabzKYO3IpEWx+5h9YVabC86mND1w==
+"@6thpath/eslint-config@^1.0.2":
+  version "1.0.2"
+  resolved "https://npm.pkg.github.com/download/@6thpath/eslint-config/1.0.2/586751856505d1907ed884d2d5bd6b87b3f5ddafd50cc5343a46b22032dbe79c#ea7b6ddb297ea991118ccd22c71cffd8df7faf9b"
+  integrity sha512-Cw1sGEWELczzYiKae4y1/LA/MzxMo68BXf9ga0dbKI55XdmalD09hYyLOBtFM+H0Vpr5gvyTUxfwcKQtgHzUSg==
   dependencies:
     "@6thpath/prettier-config" "^1.0.1"
     "@typescript-eslint/eslint-plugin" "4.31.2"
@@ -1730,10 +1730,10 @@
   resolved "https://registry.npmjs.org/@tailwindcss/line-clamp/-/line-clamp-0.2.1.tgz#efafe556719c26a3926f0679a98307c4bc9270d2"
   integrity sha512-Hq2KJY1+T2v7jw/mnT3mnC7CKbp5kj1XTqzSb2xbEt1j+JkxIR6N3ijsN/WevZtsKJfVE1KOejA/3IRKuhZEsQ==
 
-"@tailwindcss/postcss7-compat@2.2.14", "tailwindcss@npm:@tailwindcss/postcss7-compat@2.2.14":
-  version "2.2.14"
-  resolved "https://registry.npmjs.org/@tailwindcss/postcss7-compat/-/postcss7-compat-2.2.14.tgz#bdd82d75cbc6b596519f2bd54c1047a615e06366"
-  integrity sha512-vtzYILqywIY1GWELwHVF7goPhaJpm/1P5kJZ0Kx8lNlarALTFEWwIWCM6MxQ7pXzDWa1eUeozVJVeqfOBXKwXg==
+"@tailwindcss/postcss7-compat@2.2.16", "tailwindcss@npm:@tailwindcss/postcss7-compat@2.2.16":
+  version "2.2.16"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/postcss7-compat/-/postcss7-compat-2.2.16.tgz#ba4143e25e0926fc5db0a2b459a3b34dbf8158ff"
+  integrity sha512-k+f6DL1KxG0d2dEUILxytWpHRBPMagQ8wUdH5bJUzbmv7TPd3yriR+nSOXy2Hcvt79cP3Lgc5J6oPjO4PNyRLg==
   dependencies:
     arg "^5.0.1"
     autoprefixer "^9"

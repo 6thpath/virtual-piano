@@ -1,5 +1,14 @@
 module.exports = require('@6thpath/design-system').tailwindConfig.generateTailwindConfig({
-  purge: process.env.NODE_ENV === 'production',
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    mode: 'all',
+    preserveHtmlElements: false,
+    content: ['./src/**/*.tsx'],
+    options: {
+      safelist: [],
+      keyframes: true,
+    },
+  },
   theme: {
     extend: {
       cursor: {

@@ -27,7 +27,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
-    "@6thpath/design-system": "^1.0.0",
+    "@6thpath/design-system": "^1.0.1",
     "@tonejs/midi": "2.0.27",
     "classnames": "2.3.1",
     "customize-cra": "1.0.0",
@@ -42,7 +42,7 @@
     "web-vitals": "2.1.0"
   },
   "devDependencies": {
-    "@6thpath/eslint-config": "^1.0.1",
+    "@6thpath/eslint-config": "^1.0.2",
     "@types/node": "16.10.1",
     "@types/react": "17.0.24",
     "@types/react-dom": "17.0.9",
