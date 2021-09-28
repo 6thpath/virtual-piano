@@ -1,1 +1,1 @@
-export * from './Synthesizer'
+export * from './synthesizer'

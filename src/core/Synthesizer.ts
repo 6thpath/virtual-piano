@@ -1,7 +1,7 @@
 import { Sampler } from 'tone'
 
 import { SamplesExtension } from 'constant'
-import { noteNames, baseSampleUrl } from 'config'
+import { noteNames, samplesUrl } from 'config'
 import { TSamplesMap, TSynthesizerOptions } from 'type/Synthesizer'
 
 class Synthesizer {
@@ -18,7 +18,7 @@ class Synthesizer {
     const { onload = () => {}, onerror = () => {}, ...restOptions } = options
 
     return new Sampler(samplesMap, {
-      baseUrl: baseSampleUrl,
+      baseUrl: samplesUrl,
       onload: () => {
         console.debug('[Synthesizer] Sampler ready!')
         onload()

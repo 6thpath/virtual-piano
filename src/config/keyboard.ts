@@ -76,4 +76,5 @@ export const keyboardConfig = {
     undefined,
   ],
 }
+
 export type TKey = Exclude<typeof keyboardConfig.whiteKeys[number] | typeof keyboardConfig.blackKeys[number], undefined>

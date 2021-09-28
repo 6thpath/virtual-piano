@@ -1,5 +1,5 @@
 export const noteNames = <const>[
-  // White
+  // White keys
   'C2',
   'D2',
   'E2',
@@ -37,7 +37,7 @@ export const noteNames = <const>[
   'B6',
   'C7',
 
-  // Black
+  // Black keys
   'C#2',
   'D#2',
   'F#2',

@@ -1,1 +1,1 @@
-export const baseSampleUrl = `${process.env.PUBLIC_URL}/samples/`
+export const samplesUrl = `${process.env.PUBLIC_URL}/samples/`
