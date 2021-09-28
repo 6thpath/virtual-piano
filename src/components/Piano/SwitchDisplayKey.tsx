@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil'
 
 import { DisplayKey } from 'constant'
-import { displayKeyState } from 'store'
+import { displayKeyState } from 'core/store'
 
 import { Switch } from 'components/Base/Switch'
 

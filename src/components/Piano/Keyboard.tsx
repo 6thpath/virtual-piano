@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { TKey, keyMapping, keyboardConfig } from 'config'
 import { DisplayKey, KeyDetail, WHITE_KEYS_CONTAINER_ID, BLACK_KEYS_CONTAINER_ID } from 'constant'
 import { synthesize } from 'core'
-import { displayKeyState, keyDetailState, mouseState } from 'store'
+import { displayKeyState, keyDetailState, mouseState } from 'core/store'
 import { keyId, isWhiteKey } from 'utils'
 
 const { whiteKeys, blackKeys } = keyMapping.piano

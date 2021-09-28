@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil'
 
 import { KeyDetail } from 'constant'
-import { keyDetailState } from 'store'
+import { keyDetailState } from 'core/store'
 
 import { Switch } from 'components/Base/Switch'
 

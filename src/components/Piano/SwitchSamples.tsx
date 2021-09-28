@@ -3,7 +3,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import { SamplesExtension } from 'constant'
 import { synthesize } from 'core'
-import { samplesExtensionState, pianoState } from 'store'
+import { samplesExtensionState, pianoState } from 'core/store'
 
 import { Switch } from 'components/Base/Switch'
 

@@ -1,7 +1,7 @@
 import { useEffect, Fragment } from 'react'
 import { useSetRecoilState } from 'recoil'
 
-import { mouseState } from 'store'
+import { mouseState } from 'core/store'
 
 export const MouseEventHandler: React.FC = () => {
   const setMouseState = useSetRecoilState(mouseState)

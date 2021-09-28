@@ -1,27 +1,22 @@
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import classnames from 'classnames'
 
-import { SamplesExtension } from 'constant'
 import { synthesize } from 'core'
-import { pianoState } from 'store'
+import { pianoState, samplesExtensionState } from 'core/store'
 
 import { ControlPanel } from './ControlPanel'
 import { Keyboard } from './Keyboard'
-import { SAMPLES_EXTENSION } from 'store/id'
 
 export const Piano: React.FC = () => {
   const [piano, setPianoState] = useRecoilState(pianoState)
+  const samplesExtension = useRecoilValue(samplesExtensionState)
 
   useEffect(() => {
-    // ! `JSON.parse` is essential here because data retrieved from local storage was a stringified object
-    const samplesExtension =
-      JSON.parse(localStorage.getItem(SAMPLES_EXTENSION) as SamplesExtension) || SamplesExtension.OGG
-
     synthesize.initialize(samplesExtension, {
       onload: () => setPianoState((prevState) => ({ ...prevState, ready: true })),
     })
-  }, [setPianoState])
+  }, [samplesExtension, setPianoState])
 
   if (!piano.ready) {
     return null
