@@ -1,4 +1,4 @@
-import { useCallback, useEffect, Fragment } from 'react'
+import { useEffect, Fragment } from 'react'
 
 import { keyMapping } from 'config'
 import { synthesize } from 'core'
@@ -10,40 +10,40 @@ const {
 } = keyMapping
 
 export const KeyboardEventHandler: React.FC = () => {
-  const onKeyDown = useCallback(({ key, repeat }: KeyboardEvent) => {
-    // Detects key holding and ignore it
-    if (!repeat) {
-      if (key === 'Shift') {
-        removeActiveStyleFromAllKeys(true)
-      } else if (whiteKeys[key] || blackKeys[key]) {
-        const whiteKey = isWhiteKey(key)
+  useEffect(() => {
+    const onKeyDown = ({ key, repeat }: KeyboardEvent) => {
+      // Detects key holding and ignore it
+      if (!repeat) {
+        if (key === 'Shift') {
+          removeActiveStyleFromAllKeys(true)
+        } else if (whiteKeys[key] || blackKeys[key]) {
+          const whiteKey = isWhiteKey(key)
 
-        synthesize.playNote(whiteKey ? whiteKeys[key][0] : blackKeys[key][0])
-        addActiveStyle(key, whiteKey)
-      } else if (controller[key]) {
-        // ! Implement later after migrate from react context to recoil
-        console.log('Toggle', controller[key])
+          synthesize.playNote(whiteKey ? whiteKeys[key][0] : blackKeys[key][0])
+          addActiveStyle(key, whiteKey)
+        } else if (controller[key]) {
+          // ! Implement later after migrate from react context to recoil
+          console.log('Toggle', controller[key])
+        }
       }
     }
-  }, [])
 
-  const onKeyUp = useCallback(({ key }: KeyboardEvent) => {
-    if (key === 'Shift') {
-      removeActiveStyleFromAllKeys()
-    } else {
-      removeActiveStyle(key, isWhiteKey(key))
+    const onKeyUp = ({ key }: KeyboardEvent) => {
+      if (key === 'Shift') {
+        removeActiveStyleFromAllKeys()
+      } else {
+        removeActiveStyle(key, isWhiteKey(key))
+      }
     }
-  }, [])
 
-  useEffect(() => {
-    document.addEventListener('keydown', onKeyDown, false)
+    document.addEventListener('keydown', onKeyDown)
     document.addEventListener('keyup', onKeyUp)
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
       document.removeEventListener('keyup', onKeyUp)
     }
-  }, [onKeyDown, onKeyUp])
+  }, [])
 
   return <Fragment />
 }

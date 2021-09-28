@@ -2,7 +2,15 @@ import { Sampler } from 'tone'
 
 import { SamplesExtension } from 'constant'
 import { noteNames, samplesUrl } from 'config'
-import { TSamplesMap, TSynthesizerOptions } from 'type/Synthesizer'
+
+import { ToneAudioBuffer, SamplerOptions } from 'tone'
+
+type TSamplesMap = {
+  [note: string]: ToneAudioBuffer | AudioBuffer | string
+  [midi: number]: ToneAudioBuffer | AudioBuffer | string
+}
+
+type TSynthesizerOptions = Partial<Omit<SamplerOptions, 'baseUrl'>>
 
 class Synthesizer {
   private _synthesizer?: Sampler
