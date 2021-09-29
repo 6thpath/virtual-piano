@@ -1,8 +1,7 @@
 import { atom } from 'recoil'
 
 import { SamplesExtension, DisplayKey, KeyDetail } from 'constant'
-import { localStorageEffect } from 'core/store/persistence'
-import { isPersistedValueValid } from 'utils'
+import { localStorageEffect, isPersistedValueValid } from 'core/store/persistence'
 
 export const pianoState = atom({
   key: 'piano/piano',

@@ -62,7 +62,6 @@ export const Keyboard: React.FC = () => {
   const displayKey = useRecoilValue(displayKeyState)
   const keyDetail = useRecoilValue(keyDetailState)
   const { leftMouseDown } = useRecoilValue(mouseState)
-  console.log('Keyboard:React.FC -> leftMouseDown', leftMouseDown)
 
   const onClickPianoKey = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, key: string) => {
     const whiteKey = isWhiteKey(key)

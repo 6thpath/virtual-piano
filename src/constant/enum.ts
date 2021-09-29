@@ -17,3 +17,7 @@ export enum KeyDetail {
   SYLLABLE = 'syllable',
   NOTE_NAME = 'noteName',
 }
+
+export enum KeyboardType {
+  TYPE32A = '32keysA',
+}

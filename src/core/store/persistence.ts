@@ -1,5 +1,7 @@
 import { AtomEffect, DefaultValue } from 'recoil'
 
+import { isValueInEnum } from 'utils'
+
 export const localStorageEffect =
   <T>(key: string): AtomEffect<T> =>
   ({ setSelf, onSet }) => {
@@ -17,3 +19,13 @@ export const localStorageEffect =
       }
     })
   }
+
+export const isPersistedValueValid = <T>(lsKey: string, enumType: T): T[keyof T] | undefined => {
+  const persistedValue = localStorage.getItem(lsKey) as T[keyof T] | null
+
+  if (persistedValue !== null && isValueInEnum(enumType, persistedValue)) {
+    return persistedValue
+  }
+
+  localStorage.removeItem(lsKey)
+}
