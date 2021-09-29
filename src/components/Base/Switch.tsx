@@ -1,18 +1,17 @@
-import React, { Fragment } from 'react'
 import classnames from 'classnames'
 
-type Props = {
+type Props<T> = React.PropsWithChildren<{
   id: string
-  options: string[]
-  value: string
-  onChange: (option: string) => void
-}
+  options: T[]
+  value: T
+  onChange: (option: T) => void
+}>
 
-export const Switch: React.FC<Props> = ({ id, options, value, onChange }) => {
+export const Switch = <T extends string>({ id, options, value, onChange }: Props<T>): React.ReactElement | null => {
   const valueIndex = options.indexOf(value)
 
   if (!options.length) {
-    return <Fragment />
+    return null
   }
 
   const handleDotClick = () => {
@@ -40,7 +39,7 @@ export const Switch: React.FC<Props> = ({ id, options, value, onChange }) => {
     event.currentTarget.classList.remove('opacity-0', 'shadow-xl', 'cursor-move')
   }
 
-  const onDragEnter = (event: React.DragEvent<HTMLDivElement>, option: string) => {
+  const onDragEnter = (event: React.DragEvent<HTMLDivElement>, option: T) => {
     // ! Gets the `data` from `dataTransfer.types` instead of `dataTransfer.getData`
     // ! dataTransfer.types are automatically lowercased, so the `id` need to be lowercased too
     if (event.dataTransfer.types[0] === id.toLowerCase() && value !== option) {

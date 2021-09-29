@@ -21,8 +21,8 @@ export const SwitchSamples: React.FC = () => {
     )
   }
 
-  const onChangeSamples = (option: string) => {
-    setSamplesExtension(option as SamplesExtension)
+  const onChangeSamples = (option: SamplesExtension) => {
+    setSamplesExtension(option)
   }
 
   useEffect(() => {
