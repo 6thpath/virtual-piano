@@ -3,7 +3,7 @@ import { NormalRange, Time } from 'tone/build/esm/core/type/Units'
 
 import { SamplesExtension } from 'constant'
 
-import { noteNames } from './notes'
+import { noteNames } from './music-notes'
 
 type TSamplesMap = {
   [note: string]: ToneAudioBuffer | AudioBuffer | string
