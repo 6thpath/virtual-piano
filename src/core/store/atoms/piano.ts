@@ -6,14 +6,19 @@ import { localStorageEffect, isPersistedValueValid } from 'core/store/persistenc
 export const pianoState = atom({
   key: 'piano/piano',
   default: {
-    ready: false,
-    lock: false,
+    isReady: false,
+    isLocked: false,
   },
+})
+
+export const pianoTypeState = atom({
+  key: 'piano/pianoType',
+  default: undefined,
 })
 
 export const samplesExtensionStateKey = 'piano/samplesExtension'
 const defaultSamplesExtensionState =
-  isPersistedValueValid(samplesExtensionStateKey, SamplesExtension) ?? SamplesExtension.OGG
+  isPersistedValueValid(samplesExtensionStateKey, SamplesExtension) ?? SamplesExtension.MP3
 export const samplesExtensionState = atom({
   key: samplesExtensionStateKey,
   default: defaultSamplesExtensionState,

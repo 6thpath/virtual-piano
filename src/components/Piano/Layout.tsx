@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import classnames from 'classnames'
 
-import { synthesize } from 'core'
+import { synthesizer } from 'core'
 import { pianoState, samplesExtensionState } from 'core/store'
 
 import { ControlPanel } from './ControlPanel'
@@ -13,12 +13,12 @@ export const Piano: React.FC = () => {
   const samplesExtension = useRecoilValue(samplesExtensionState)
 
   useEffect(() => {
-    synthesize.initialize(samplesExtension, {
-      onload: () => setPianoState((prevState) => ({ ...prevState, ready: true })),
+    synthesizer.initialize(samplesExtension, {
+      onload: () => setPianoState((prevState) => ({ ...prevState, isReady: true })),
     })
   }, [samplesExtension, setPianoState])
 
-  if (!piano.ready) {
+  if (!piano.isReady) {
     return null
   }
 

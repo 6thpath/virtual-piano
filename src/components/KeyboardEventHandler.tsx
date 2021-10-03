@@ -1,12 +1,36 @@
 import { useEffect, Fragment } from 'react'
 
-import { keyMapping } from 'config'
-import { synthesize } from 'core'
-import { isWhiteKey, addActiveStyle, removeActiveStyle, removeActiveStyleFromAllKeys } from 'utils'
+import { keyMapping, checkIsWhiteKey } from 'config'
+import { synthesizer } from 'core'
+
+import { keyContainerId, keyId } from 'components/Piano/Keyboard'
+
+const addActiveStyle = (key: string, isWhiteKey = false): void => {
+  document.getElementById(keyId(key))?.classList.add(isWhiteKey ? 'bg-neutral-3' : 'bg-neutral-6')
+}
+
+const removeActiveStyle = (key: string, isWhiteKey = false): void => {
+  document.getElementById(keyId(key))?.classList.remove(isWhiteKey ? 'bg-neutral-3' : 'bg-neutral-6')
+}
+
+/**
+ * Remove active style from all piano keyboard key
+ */
+const removeActiveStyleFromAllKeys = (isWhiteKey = false): void => {
+  const parentElement = document.getElementById(keyContainerId[isWhiteKey ? 'whiteKey' : 'blackKey'])
+  const keyElements = parentElement?.getElementsByClassName('piano-key') ?? []
+  const keyCount = keyElements.length
+
+  if (keyCount) {
+    for (let i = 0; i < keyCount; i++) {
+      keyElements[i].classList.remove(isWhiteKey ? 'bg-neutral-3' : 'bg-neutral-6')
+    }
+  }
+}
 
 const {
   controller,
-  piano: { whiteKeys, blackKeys },
+  piano: { whiteKey, blackKey },
 } = keyMapping
 
 export const KeyboardEventHandler: React.FC = () => {
@@ -16,11 +40,11 @@ export const KeyboardEventHandler: React.FC = () => {
       if (!repeat) {
         if (key === 'Shift') {
           removeActiveStyleFromAllKeys(true)
-        } else if (whiteKeys[key] || blackKeys[key]) {
-          const whiteKey = isWhiteKey(key)
+        } else if (whiteKey[key] || blackKey[key]) {
+          const isWhiteKey = checkIsWhiteKey(key)
 
-          synthesize.playNote(whiteKey ? whiteKeys[key][0] : blackKeys[key][0])
-          addActiveStyle(key, whiteKey)
+          synthesizer.playNote(isWhiteKey ? whiteKey[key][0] : blackKey[key][0])
+          addActiveStyle(key, isWhiteKey)
         } else if (controller[key]) {
           // ! Implement later after migrate from react context to recoil
           console.log('Toggle', controller[key])
@@ -32,7 +56,7 @@ export const KeyboardEventHandler: React.FC = () => {
       if (key === 'Shift') {
         removeActiveStyleFromAllKeys()
       } else {
-        removeActiveStyle(key, isWhiteKey(key))
+        removeActiveStyle(key, checkIsWhiteKey(key))
       }
     }
 
@@ -47,5 +71,3 @@ export const KeyboardEventHandler: React.FC = () => {
 
   return <Fragment />
 }
-
-KeyboardEventHandler.displayName = 'KeyboardEventHandler'

@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import { SamplesExtension } from 'constant'
-import { synthesize } from 'core'
+import { synthesizer } from 'core'
 import { samplesExtensionState, pianoState } from 'core/store'
 
 import { Switch } from 'components/Base/Switch'
@@ -30,7 +30,7 @@ export const SwitchSamples: React.FC = () => {
     if (didMountRef.current) {
       setPianoState((prevState) => ({ ...prevState, lock: true }))
 
-      synthesize.initialize(samplesExtension, {
+      synthesizer.initialize(samplesExtension, {
         onload: () => setPianoState((prevState) => ({ ...prevState, lock: false })),
       })
     } else {

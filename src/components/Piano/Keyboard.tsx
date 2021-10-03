@@ -1,19 +1,26 @@
 import { useRecoilValue } from 'recoil'
 import classnames from 'classnames'
 
-import { TKey, keyMapping, keyboardConfig } from 'config'
-import { DisplayKey, KeyDetail, WHITE_KEYS_CONTAINER_ID, BLACK_KEYS_CONTAINER_ID } from 'constant'
-import { synthesize } from 'core'
+import { TKey, keyMapping, checkIsWhiteKey, keyboardConfig } from 'config'
+import { DisplayKey, KeyDetail } from 'constant'
+import { synthesizer } from 'core'
 import { displayKeyState, keyDetailState, mouseState } from 'core/store'
-import { keyId, isWhiteKey } from 'utils'
 
-const { whiteKeys, blackKeys } = keyMapping.piano
+const { whiteKey, blackKey } = keyMapping.piano
 
 type RenderKeyDetailOptions = {
   keyDetail: KeyDetail
   key: TKey
   flat?: boolean
 }
+
+export const keyContainerId = {
+  blackKey: 'blackKeyContainer',
+  whiteKey: 'whiteKeyContainer',
+}
+
+/** Generate piano key element ID */
+export const keyId = (key: string): string => `pianoKey-${key}`
 
 const keyWidth = 'md:w-key-md lg:w-key-lg xl:w-key-xl 2xl:w-key-2xl'
 const keySpacing = 'md:pb-4 lg:pb-8'
@@ -48,10 +55,10 @@ const blackKeyClassnames = classnames(
 const renderKeyDetail = ({ keyDetail, key, flat = false }: RenderKeyDetailOptions) => {
   switch (keyDetail) {
     case KeyDetail.NOTE_NAME:
-      return isWhiteKey(key) ? whiteKeys[key][0] : flat ? '' : blackKeys[key][3]
+      return checkIsWhiteKey(key) ? whiteKey[key][0] : flat ? '' : blackKey[key][3]
 
     case KeyDetail.SYLLABLE:
-      return isWhiteKey(key) ? whiteKeys[key][1] : `${blackKeys[key][flat ? 1 : 2]}${flat ? '♭' : '♯'}`
+      return checkIsWhiteKey(key) ? whiteKey[key][1] : `${blackKey[key][flat ? 1 : 2]}${flat ? '♭' : '♯'}`
 
     default:
       return ''
@@ -64,25 +71,25 @@ export const Keyboard: React.FC = () => {
   const { leftMouseDown } = useRecoilValue(mouseState)
 
   const onClickPianoKey = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, key: string) => {
-    const whiteKey = isWhiteKey(key)
+    const isWhiteKey = checkIsWhiteKey(key)
 
-    synthesize.playNote(whiteKey ? whiteKeys[key][0] : blackKeys[key][0])
+    synthesizer.playNote(isWhiteKey ? whiteKey[key][0] : blackKey[key][0])
   }
 
   const onMouseEnter = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, key: string) => {
     event.stopPropagation()
 
     if (leftMouseDown) {
-      const whiteKey = isWhiteKey(key)
+      const isWhiteKey = checkIsWhiteKey(key)
 
-      synthesize.playNote(whiteKey ? whiteKeys[key][0] : blackKeys[key][0])
+      synthesizer.playNote(isWhiteKey ? whiteKey[key][0] : blackKey[key][0])
     }
   }
 
   return (
     <div className="relative">
       <div
-        id={WHITE_KEYS_CONTAINER_ID}
+        id={keyContainerId.whiteKey}
         className="md:h-wkey-md lg:h-wkey-lg xl:h-wkey-xl 2xl:h-wkey-2xl flex flex-row border border-black"
       >
         {keyboardConfig.whiteKeys.map((key, index) => (
@@ -101,7 +108,7 @@ export const Keyboard: React.FC = () => {
         ))}
       </div>
 
-      <div id={BLACK_KEYS_CONTAINER_ID} className={blackKeysContainer}>
+      <div id={keyContainerId.blackKey} className={blackKeysContainer}>
         {keyboardConfig.blackKeys.map((key, index) => {
           if (key === undefined) {
             return <div key={index} className={`${blackKeyWrapper} pointer-events-none`} />

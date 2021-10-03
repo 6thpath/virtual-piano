@@ -7,20 +7,20 @@ type Props = HTMLInputProps
  * Force a value into a number. This is currently capped to 2 decimal
  * places.
  */
-const forceNumber = function (n: string | number) {
-  n = Number(n)
-  if (isNaN(n) || typeof n === 'undefined') {
-    n = 0
-  }
+// const forceNumber = function (n: string | number) {
+//   n = Number(n)
+//   if (isNaN(n) || typeof n === 'undefined') {
+//     n = 0
+//   }
 
-  return n
-}
+//   return n
+// }
 
-export const Slider: React.FC<Props> = ({ value, step }) => {
+export const Slider: React.FC<Props> = () => {
   const sliderRef = useRef<HTMLInputElement>(null)
   const holdLoop = useRef()
-  const [isMouseDown, setIsMouseDown] = useState<boolean>(false)
-  const [isDragging, setIsDragging] = useState<boolean>(false)
+  const [, setIsMouseDown] = useState<boolean>(false)
+  const [, setIsDragging] = useState<boolean>(false)
 
   const onMouseDown = () => {
     setIsMouseDown(true)

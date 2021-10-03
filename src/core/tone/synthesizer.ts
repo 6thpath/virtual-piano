@@ -1,9 +1,9 @@
-import { Sampler } from 'tone'
+import { ToneAudioBuffer, SamplerOptions, Sampler } from 'tone'
+import { NormalRange, Time } from 'tone/build/esm/core/type/Units'
 
 import { SamplesExtension } from 'constant'
-import { noteNames, samplesUrl } from 'config'
 
-import { ToneAudioBuffer, SamplerOptions } from 'tone'
+import { noteNames } from './notes'
 
 type TSamplesMap = {
   [note: string]: ToneAudioBuffer | AudioBuffer | string
@@ -15,44 +15,45 @@ type TSynthesizerOptions = Partial<Omit<SamplerOptions, 'baseUrl'>>
 class Synthesizer {
   private _synthesizer?: Sampler
 
-  public createSamplesMap = (extension: SamplesExtension): TSamplesMap => {
+  private _createSamplesMap = (extension: SamplesExtension): TSamplesMap => {
     return noteNames.reduce(
       (map, note) => ((map[note] = `${note.replace('#', 's')}.${extension}`), map),
       {} as { [key: string]: string }
     )
   }
 
-  public createSynthesizer = (samplesMap: TSamplesMap, options: TSynthesizerOptions): Sampler => {
-    const { onload = () => {}, onerror = () => {}, ...restOptions } = options
-
+  private _createSynthesizer = (
+    samplesMap: TSamplesMap,
+    { onload, onerror, ...restOptions }: TSynthesizerOptions
+  ): Sampler => {
     return new Sampler(samplesMap, {
-      baseUrl: samplesUrl,
+      baseUrl: `${process.env.PUBLIC_URL}/samples/`,
       onload: () => {
         console.debug('[Synthesizer] Sampler ready!')
-        onload()
+        onload?.()
       },
       onerror: (error) => {
-        console.debug('[Synthesizer] An error occurred:', error)
-        onerror(error)
+        console.debug('[Synthesizer] An error occurred while initializing:', error)
+        onerror?.(error)
       },
       ...restOptions,
     }).toDestination()
   }
 
   public initialize = (extension: SamplesExtension, options: TSynthesizerOptions = {}): void => {
-    const samplesMap = this.createSamplesMap(extension)
+    const samplesMap = this._createSamplesMap(extension)
 
-    this._synthesizer = this.createSynthesizer(samplesMap, options)
+    this._synthesizer = this._createSynthesizer(samplesMap, options)
   }
 
   public get instance(): Sampler | undefined {
     return this._synthesizer
   }
 
-  public playNote = (noteName: string, duration = '1n'): void => {
+  public playNote = (noteName: string, duration = '1n', time?: Time, velocity?: NormalRange): void => {
     if (this._synthesizer) {
       try {
-        this._synthesizer.triggerAttackRelease(noteName, duration)
+        this._synthesizer.triggerAttackRelease(noteName, duration, time, velocity)
       } catch (error) {
         console.debug(error)
       }
@@ -60,4 +61,4 @@ class Synthesizer {
   }
 }
 
-export const synthesize = new Synthesizer()
+export const synthesizer = new Synthesizer()

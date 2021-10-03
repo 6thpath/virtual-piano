@@ -19,5 +19,9 @@ export enum KeyDetail {
 }
 
 export enum KeyboardType {
-  TYPE32A = '32keysA',
+  TYPE32 = '32 keys',
+  TYPE37 = '37 Keys',
+  TYPE49 = '49 keys',
+  TYPE54 = '54 keys',
+  TYPE61 = '61 keys',
 }

@@ -14,7 +14,7 @@ export const noteNames = <const>[
   'G3',
   'A3',
   'B3',
-  'C4',
+  'C4', // middle C
   'D4',
   'E4',
   'F4',

@@ -1,13 +1,10 @@
-import { TNoteName, TSyllable, TNote } from './notes'
+import { TNoteName, TSyllable, TNote } from 'core'
 
-type TKeyType = 'whiteKeys' | 'blackKeys'
-type TWhiteKeyConfig = [TNoteName, TSyllable]
-type TBlackKeyConfig = [TNoteName, TNote, TNote, string]
-
+type TPianoKey = 'whiteKey' | 'blackKey'
 type TKeyMapping = {
   controller: Record<string, string>
   piano: {
-    [key in TKeyType]: Record<string, TWhiteKeyConfig | TBlackKeyConfig>
+    [key in TPianoKey]: Record<string, [TNoteName, TSyllable] | [TNoteName, TNote, TNote, string]>
   }
 }
 
@@ -17,7 +14,7 @@ export const keyMapping: TKeyMapping = {
     '~': 'keyDetail',
   },
   piano: {
-    whiteKeys: {
+    whiteKey: {
       '1': ['C2', 'Do'],
       '2': ['D2', 'Re'],
       '3': ['E2', 'Mi'],
@@ -56,7 +53,7 @@ export const keyMapping: TKeyMapping = {
       m: ['C7', 'Do'],
     },
 
-    blackKeys: {
+    blackKey: {
       '!': ['C#2', 'C', 'D', 'C♯2'],
       '@': ['D#2', 'D', 'E', 'D♯2'],
       $: ['F#2', 'F', 'G', 'F♯2'],
@@ -85,3 +82,5 @@ export const keyMapping: TKeyMapping = {
     },
   },
 }
+
+export const checkIsWhiteKey = (key: string): boolean => keyMapping.piano.whiteKey[key] !== undefined
