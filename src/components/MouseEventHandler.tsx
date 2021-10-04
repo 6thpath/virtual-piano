@@ -1,7 +1,9 @@
-import { useEffect, Fragment } from 'react'
+import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 import { mouseState } from 'core/store'
+
+import { ReactComponent } from '../assets/images/keyboard.svg'
 
 export const MouseEventHandler: React.FC = () => {
   const setMouseState = useSetRecoilState(mouseState)
@@ -28,5 +30,9 @@ export const MouseEventHandler: React.FC = () => {
     }
   }, [setMouseState])
 
-  return <Fragment />
+  return (
+    <button>
+      <ReactComponent />
+    </button>
+  )
 }

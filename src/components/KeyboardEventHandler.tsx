@@ -6,11 +6,11 @@ import { synthesizer } from 'core'
 import { keyContainerId, keyId } from 'components/Piano/Keyboard'
 
 const addActiveStyle = (key: string, isWhiteKey = false): void => {
-  document.getElementById(keyId(key))?.classList.add(isWhiteKey ? 'bg-neutral-3' : 'bg-neutral-6')
+  document.getElementById(keyId(key))?.classList.add(isWhiteKey ? 'opacity-90' : 'bg-neutral-6')
 }
 
 const removeActiveStyle = (key: string, isWhiteKey = false): void => {
-  document.getElementById(keyId(key))?.classList.remove(isWhiteKey ? 'bg-neutral-3' : 'bg-neutral-6')
+  document.getElementById(keyId(key))?.classList.remove(isWhiteKey ? 'opacity-90' : 'bg-neutral-6')
 }
 
 /**

@@ -21,10 +21,14 @@ export const localStorageEffect =
   }
 
 export const isPersistedValueValid = <T>(lsKey: string, enumType: T): T[keyof T] | undefined => {
-  const persistedValue = localStorage.getItem(lsKey) as T[keyof T] | null
+  const persistedValue = localStorage.getItem(lsKey) as string | null
 
-  if (persistedValue !== null && isValueInEnum(enumType, persistedValue)) {
-    return persistedValue
+  if (persistedValue !== null) {
+    const parsedValue = JSON.parse(persistedValue) as T[keyof T]
+
+    if (isValueInEnum(enumType, parsedValue)) {
+      return parsedValue
+    }
   }
 
   localStorage.removeItem(lsKey)

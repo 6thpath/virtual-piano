@@ -9,6 +9,8 @@
   --safe-inset-left: env(safe-area-inset-left);
 }
 
-body {
-  touch-action: none;
+@media (max-width: 768px) {
+  body {
+    touch-action: none;
+  }
 }

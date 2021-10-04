@@ -6,9 +6,11 @@ import { Piano } from './Piano/Layout'
 export const App: React.FC = () => {
   return (
     <>
-      <WindowDimensionsHandler />
-      <KeyboardEventHandler />
-      <MouseEventHandler />
+      <div className="w-full absolute bottom-0 right-0">
+        <WindowDimensionsHandler />
+        <KeyboardEventHandler />
+        <MouseEventHandler />
+      </div>
 
       <div className="container mx-auto p-12 font-dosis bg-white">
         <Piano />
