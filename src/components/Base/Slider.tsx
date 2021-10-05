@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react'
 
-type HTMLInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type HTMLInputProps = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>
 type Props = HTMLInputProps
 
 /**

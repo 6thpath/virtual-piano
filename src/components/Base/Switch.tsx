@@ -7,7 +7,12 @@ type Props<T> = React.PropsWithChildren<{
   onChange: (option: T) => void
 }>
 
-export const Switch = <T extends string>({ id, options, value, onChange }: Props<T>): React.ReactElement | null => {
+export const Switch = <T extends string>({
+  id,
+  options,
+  value,
+  onChange,
+}: Props<T>): React.ReactElement | null => {
   const valueIndex = options.indexOf(value)
 
   if (!options.length) {

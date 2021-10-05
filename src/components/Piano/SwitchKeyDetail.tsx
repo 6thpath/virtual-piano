@@ -31,7 +31,12 @@ export const SwitchKeyDetail: React.FC = () => {
       <div className="cursor-pointer mb-8 text-md" onClick={handleClickLabelKeyDetail}>
         Key detail
       </div>
-      <Switch id="switchKeyDetail" options={keyDetailOptions} value={keyDetail} onChange={onChangeKeyDetail} />
+      <Switch
+        id="switchKeyDetail"
+        options={keyDetailOptions}
+        value={keyDetail}
+        onChange={onChangeKeyDetail}
+      />
     </div>
   )
 }

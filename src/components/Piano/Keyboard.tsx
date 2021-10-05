@@ -58,7 +58,9 @@ const renderKeyDetail = ({ keyDetail, key, flat = false }: RenderKeyDetailOption
       return checkIsWhiteKey(key) ? whiteKey[key][0] : flat ? '' : blackKey[key][3]
 
     case KeyDetail.SYLLABLE:
-      return checkIsWhiteKey(key) ? whiteKey[key][1] : `${blackKey[key][flat ? 1 : 2]}${flat ? '♭' : '♯'}`
+      return checkIsWhiteKey(key)
+        ? whiteKey[key][1]
+        : `${blackKey[key][flat ? 1 : 2]}${flat ? '♭' : '♯'}`
 
     default:
       return ''
@@ -100,7 +102,9 @@ export const Keyboard: React.FC = () => {
             onMouseDown={(event) => onClickPianoKey(event, key)}
             onMouseEnter={(event) => onMouseEnter(event, key)}
           >
-            <div className="mb-4 px-4 bg-black text-md text-white">{renderKeyDetail({ keyDetail, key })}</div>
+            <div className="mb-4 px-4 bg-black text-md text-white">
+              {renderKeyDetail({ keyDetail, key })}
+            </div>
             <div className={classnames({ [keySpacing]: displayKey === DisplayKey.ON })}>
               {displayKey === DisplayKey.ON ? key : ''}
             </div>
@@ -125,7 +129,9 @@ export const Keyboard: React.FC = () => {
                 <div className="mb-4 px-4 bg-white text-xs text-black">
                   {renderKeyDetail({ keyDetail, key, flat: true })}
                 </div>
-                <div className="mb-4 px-4 bg-white text-xs text-black">{renderKeyDetail({ keyDetail, key })}</div>
+                <div className="mb-4 px-4 bg-white text-xs text-black">
+                  {renderKeyDetail({ keyDetail, key })}
+                </div>
                 <div className={classnames({ [keySpacing]: displayKey === DisplayKey.ON })}>
                   {displayKey === DisplayKey.ON ? key : ''}
                 </div>

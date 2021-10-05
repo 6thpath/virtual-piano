@@ -26,7 +26,8 @@ export const samplesExtensionState = atom({
 })
 
 export const displayKeyStateKey = 'piano/displayKey'
-const defaultDisplayKeyState = isPersistedValueValid(displayKeyStateKey, DisplayKey) ?? DisplayKey.ON
+const defaultDisplayKeyState =
+  isPersistedValueValid(displayKeyStateKey, DisplayKey) ?? DisplayKey.ON
 export const displayKeyState = atom({
   key: displayKeyStateKey,
   default: defaultDisplayKeyState,

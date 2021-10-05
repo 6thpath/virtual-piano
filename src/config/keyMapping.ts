@@ -83,4 +83,5 @@ export const keyMapping: TKeyMapping = {
   },
 }
 
-export const checkIsWhiteKey = (key: string): boolean => keyMapping.piano.whiteKey[key] !== undefined
+export const checkIsWhiteKey = (key: string): boolean =>
+  keyMapping.piano.whiteKey[key] !== undefined

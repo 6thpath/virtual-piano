@@ -50,7 +50,12 @@ class Synthesizer {
     return this._synthesizer
   }
 
-  public playNote = (noteName: string, duration = '1n', time?: Time, velocity?: NormalRange): void => {
+  public playNote = (
+    noteName: string,
+    duration = '1n',
+    time?: Time,
+    velocity?: NormalRange
+  ): void => {
     if (this._synthesizer) {
       try {
         this._synthesizer.triggerAttackRelease(noteName, duration, time, velocity)

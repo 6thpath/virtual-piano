@@ -23,7 +23,12 @@ export const SwitchDisplayKey: React.FC = () => {
       <div className="cursor-pointer mb-8 text-md" onClick={handleClickLabelDisplayKey}>
         Display key
       </div>
-      <Switch id="switchDisplayKey" options={displayKeyOptions} value={displayKey} onChange={onChangeDisplayKey} />
+      <Switch
+        id="switchDisplayKey"
+        options={displayKeyOptions}
+        value={displayKey}
+        onChange={onChangeDisplayKey}
+      />
     </div>
   )
 }
